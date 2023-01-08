@@ -1,0 +1,2 @@
+let routes = {};
+let templates = {};

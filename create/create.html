@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="../img/icon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <title>Survey | Best place to surve</title>
+
+    <script defer src="../script.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+        <nav class="nav">
+        <img
+            src="../img/logo.png"
+            alt="Survey logo"
+            class="nav__logo"
+            id="logo"
+            designer="Yazan"
+            data-version-number="3.0"
+        />
+        <ul class="nav__links">
+            <li class="nav__item">
+                <a class="nav__link" href="../index.html">Home</a>
+            </li>
+            <li class="nav__item">
+            <a class="nav__link" href="create.html">Create</a>
+            </li>
+            <li class="nav__item">
+            <a class="nav__link" href="#section--2">Answer</a>
+            </li>
+            <li class="nav__item">
+            <a class="nav__link" href="#section--3">Result</a>
+            </li>
+        </ul>
+        </nav>
+    </header>
+
+    <section class="section hidden_section" id="hidden">
+        <ul class="add_question_here">
+            <li class="added_questions_list"><h2>current questions added to the survey</h2></li>
+        </ul>
+    </section>
+
+    <section class="section" id="section--1">
+        <div class="header__title">
+            <h1>
+                Create custom survey
+            </h1>
+        </div>
+        <div calss="btn">
+            <button class="btn add__questions__1 btn__question" data-tab="1">
+                Add open question
+            </button>
+            <button class="btn add__questions__2 btn__question" data-tab="1">
+                Add closed question
+            </button>
+            <button class="btn add__questions__3 btn__question" data-tab="1">
+                Add multi-choice question
+            </button>
+        </div>
+
+    </section>
+
+    <section id="parent">
+        <section class="questions_section padded_section" >
+        </section>
+    
+    
+        <section class="padded_section" id="hidden">
+            <div class="btn">
+                <button class="btn submit_survey" data-tab="1">
+                    Submit Survey!
+                </button>
+            </div>
+        </section>
+    </section>
+
+    <section class="questions_section padded_section" >
+    </section>
+    
+  </body>
+</html>
