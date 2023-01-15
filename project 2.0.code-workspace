@@ -1,0 +1,13 @@
+{
+    "folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../router.js-master"
+		}
+	],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "project 2.0"
+    }
+}
