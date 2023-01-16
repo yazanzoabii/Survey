@@ -1,8 +1,7 @@
 import { displyQuestionResult } from "./../components/displayQuestionResult.js";
 
 
-export function survey_result(){
-    let id = 28;
+export function survey_result(id){
     console.log("this is the result");
 
     document.getElementById("section--1").innerHTML = '<div></div>';

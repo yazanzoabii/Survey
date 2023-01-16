@@ -6,7 +6,6 @@ let current_id = 0;
 localStorage.setItem("current_id", current_id.toString());
 localStorage.setItem("survies", JSON.stringify(emptyList));
 let survey = new Survey();
-//survey.questions = [];
 localStorage.setItem("current_survey", JSON.stringify(survey));
 
 
@@ -123,3 +122,35 @@ export function savequestion(q_type, text, options){
 export function savesurvey(title, author){
     storeSurvey(JSON.parse(localStorage.getItem("current_survey")), title, author);
 };
+
+
+export function delete_survey(id){
+
+    
+    let survies = JSON.parse(localStorage.getItem("survies"));     
+    let index = survies.indexOf(id);
+    if (index !== -1) {
+        survies.slice(index, 1);
+    }
+    localStorage.setItem("survies", JSON.stringify(survies));
+    
+    let survey = JSON.parse(localStorage.getItem(id));
+    if (survey == null){
+        return;
+    }
+    let survey_data = JSON.parse(localStorage.getItem(survey.answers));
+    for ( let question_data_id of survey_data.QuestionsData){
+        localStorage.removeItem(question_data_id);
+    }
+    localStorage.removeItem(survey.answers);
+
+    let questions = survey.questions;
+    for ( let question_id of questions){
+        localStorage.removeItem(question_id);
+    }
+
+    localStorage.removeItem(id);
+
+    document.getElementById(id).remove();
+
+}

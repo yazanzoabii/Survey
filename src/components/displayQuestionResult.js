@@ -27,7 +27,6 @@ export function displyQuestionResult(type, my_data, i, question){
         section.appendChild(btn_close);
 
 
-
         let btn_open = document.createElement('button');
         btn_open.className = 'btn';
         btn_open.textContent = 'View Answers!';
@@ -36,6 +35,8 @@ export function displyQuestionResult(type, my_data, i, question){
             overlay.classList.remove('hidden');
 
         });
+
+
         document.getElementById("section--1").appendChild(btn_open);
         
         console.log(my_data);
@@ -48,7 +49,6 @@ export function displyQuestionResult(type, my_data, i, question){
         }
         document.getElementById("section--1").appendChild(section);
     }
-
 
 
     if (type > 1){
@@ -84,7 +84,7 @@ export function displyQuestionResult(type, my_data, i, question){
             }
         });
     }
-    console.log("diplay question result");
+    console.log("display question result");
 }
 
 

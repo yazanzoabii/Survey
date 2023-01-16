@@ -1,5 +1,7 @@
 'use strict';
 
+import {router} from './../../router2.js';
+
 export function display_surveys(){
 
 
@@ -23,26 +25,38 @@ export function display_surveys(){
             let li = document.createElement('li');
             li.className = 'display_survey';
             li.id = sid;
-            li.textContent = survey.name;
+            if (survey.name == ""){
+                li.textContent = "no name";
+            }
+            else{
+                li.textContent = survey.name;
+            }
+            if (survey.Author == ""){
+                li.textContent += "  by: unkown";
+            }
+            else{
+                li.textContent += '  by: ' + survey.Author;
+            }
+
 
             let res_btn = document.createElement('button');
             res_btn.className = 'results';
             res_btn.textContent = 'Results';
             res_btn.id = sid;
-            res_btn.setAttribute("href", "/results/" + sid);
+            res_btn.addEventListener('click', router);
 
             let clo_btn = document.createElement('button');
             clo_btn.className = 'close';
             clo_btn.textContent = 'Close';
             clo_btn.id = sid;
+            clo_btn.addEventListener('click', router);
 
             let ans_btn = document.createElement('button');
             ans_btn.className = 'answer';
             ans_btn.textContent = 'Answer';
             ans_btn.id = sid;
-            ans_btn.setAttribute("href", "/answer/" + sid);
-            //ans_btn.href = '/answer/' + sid;
-            //ans_btn.href = '/1' + sid;
+            ans_btn.addEventListener('click', router);
+
 
             li.appendChild(res_btn);
             li.appendChild(clo_btn);

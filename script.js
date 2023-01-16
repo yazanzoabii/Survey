@@ -1,32 +1,5 @@
+import {router} from './router2.js';
 
-/*
-
-
-
-currently not used.
-currently not used.
-currently not used.
-currently not used.
-currently not used.
-currently not used.
-currently not used.
-currently not used.
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-document.getElementById('app').innerHTML = component.render();
-
-
-window.addEventListener('hashchange', router);
-window.addEventListener('load', router);
+document.getElementById('nav_display_surveys').addEventListener('click', router);
+document.getElementById('nav_create_survey').addEventListener('click', router);
+console.log("added event listener");

@@ -1,6 +1,6 @@
-import {saveanswers} from './../src/storage/storage.js';
-import {ThankYou} from '../src/components/ThankYou.js';
-import { missingField } from '../src/components/missingField.js';
+import {saveanswers} from '../storage/storage.js';
+import {ThankYou} from '../components/ThankYou.js';
+import { missingField } from '../components/missingField.js';
 
 export function submit_answer() {
     let id = 28;

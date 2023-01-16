@@ -14,7 +14,6 @@ export async function load_create(){
 
 
 
-
     document.querySelectorAll('[id^="add__questions__"]').forEach(item => {
         item.addEventListener('click', function(event){
             const section = document.getElementById("question_section");
@@ -102,7 +101,10 @@ const submit_question = function() {
 
 
 const submit_survey = function() {
-    savesurvey();
+    let survey_name = document.getElementById("survey_name").value;
+    let Author_name = document.getElementById("Author_name").value;
+    
+    savesurvey(survey_name, Author_name);
     console.log('submit survey');
 };
 
