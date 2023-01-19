@@ -1,4 +1,6 @@
 import {savequestion, savesurvey} from '../../src/storage/storage.js';
+import {ThankYou} from '../components/ThankYou.js';
+import { missingField } from '../components/missingField.js';
 
 let type = 0;
 
@@ -89,6 +91,10 @@ const add_button = function(section, btn_id){
 const submit_question = function() {
     let list = [];
     let text = document.getElementById('question_text').value;
+    if (text == ""){
+        missingField();
+        return;
+    }
     if (type > 1){
         for (let op of document.querySelectorAll('[id^="question_radio_text_"]')){
             list.push(op.value)
@@ -96,6 +102,7 @@ const submit_question = function() {
 
     }
     savequestion(type, text, list);
+    document.getElementById('question_text').value = "";
     console.log('submit question');
 };
 
@@ -103,7 +110,7 @@ const submit_question = function() {
 const submit_survey = function() {
     let survey_name = document.getElementById("survey_name").value;
     let Author_name = document.getElementById("Author_name").value;
-    
+
     savesurvey(survey_name, Author_name);
     console.log('submit survey');
 };

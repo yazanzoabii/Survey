@@ -1,9 +1,12 @@
 {
     "folders": [
-		{
-			"path": "."
-		}
-	],
+        {
+            "path": "."
+        },
+        {
+            "path": "../typescript-tutorial-lesson-2"
+        }
+    ],
     "settings": {
         "liveServer.settings.multiRootWorkspaceName": "project 2.0"
     }

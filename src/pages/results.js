@@ -14,11 +14,13 @@ export function survey_result(id){
     h3.textContent = 'by: ' + survey.Author;
     document.getElementById("section--1").appendChild(h1);
     document.getElementById("section--1").appendChild(h3);
-    let survey_data = JSON.parse(localStorage.getItem(survey.answers));
+    let survey_data = JSON.parse(localStorage.getItem("answers_" + id));
+    let questions = JSON.parse(localStorage.getItem("questions_" + id));
+    console.log(questions);
     let i = 0;
 
     for (let question_data_id of survey_data.QuestionsData){
-        let question = survey.questions[i];
+        let question = questions.Questions[i];
         i += 1;
         let question_data = JSON.parse(localStorage.getItem(question_data_id));
         displyQuestionResult(question_data.question_type, question_data.answers, i, question);

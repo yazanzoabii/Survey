@@ -11,7 +11,7 @@ export function load_answer_survey(id){
     
     let num = survey.num_questions;
     
-    let questions = survey.questions;
+    let questions = JSON.parse(localStorage.getItem("questions_" + id));
     let h1 = document.createElement('h1');
     let h3 = document.createElement('h3');
     h1.textContent = survey.name;
@@ -20,7 +20,7 @@ export function load_answer_survey(id){
     section.appendChild(h3);
     console.log(questions); 
 
-    for (let question of questions){
+    for (let question of questions.Questions){
         let fieldset = document.createElement('fieldset');
         fieldset.className = "radio_options";
         let h2 = document.createElement('h2');
@@ -110,8 +110,9 @@ export function load_answer_survey(id){
 export function submit_answer(id) {
 
     let survey = JSON.parse(localStorage.getItem(id));
+    let questions = JSON.parse(localStorage.getItem("questions_" + id));
     let answers = [];
-    for( let question of survey.questions){
+    for( let question of questions.Questions){
         if (question.question_type == 1){
             let answer = document.getElementById(question.Qid);
             console.log(answer.value);
