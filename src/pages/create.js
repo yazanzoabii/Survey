@@ -8,13 +8,9 @@ let type = 0;
 
 export async function load_create(){
     
-    
-
     const doc = await fetch('./../templates/create.html');
     const html = await doc.text();
-
     document.getElementById("section--1").innerHTML = html;
-
 
     document.querySelectorAll('[id^="add__questions__"]').forEach(item => {
         item.addEventListener('click', function(event){
@@ -35,10 +31,7 @@ export async function load_create(){
             console.log(QuestionTemplate);
             QuestionTemplate.render();
         })
-
     });
-
-
     document.getElementById('submit_survey').addEventListener('click', submit_survey);
 };
 
