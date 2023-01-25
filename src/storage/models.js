@@ -30,7 +30,7 @@ export class Survey {
     id = 1;
     num_questions = 0;
     name = "";
-    //Date
+    Date = 0;
     Author = "";
 }
 

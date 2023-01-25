@@ -14,6 +14,7 @@ export function display_surveys(page = 1){
     let ul = document.createElement('ul');
     ul.className = 'saved_survies';
     ul.id = 'saved_survies';
+    ul.innerHTML += "<li class='list_headers flex-container'><div class='column survey_name'>Survey Name</div><div class='column author_name'>Author Name</div><div class='column date'>Date</div><div class='column survey_buttons'>Actions</div></li>"
 
 
     let survies = getPage(page);
@@ -27,19 +28,36 @@ export function display_surveys(page = 1){
             let li = document.createElement('li');
             li.className = 'display_survey';
             li.id = sid;
+
+
+            let text1 = "";
+            let text2 = "";
             if (survey.name == ""){
-                li.textContent = "no name";
+                text1 = "no name";
             }
             else{
-                li.textContent = survey.name;
+                text1 = survey.name;
             }
             if (survey.Author == ""){
-                li.textContent += "  by: unkown";
+                text2 += "unkown";
             }
             else{
-                li.textContent += '  by: ' + survey.Author;
+                text2 += survey.Author;
             }
-
+            let div1 = document.createElement('div');
+            div1.className = "column survey_name";
+            div1.textContent = text1;
+            li.appendChild(div1);
+            let div2 = document.createElement('div');
+            div2.className = "column author_name";
+            div2.textContent = text2;
+            li.appendChild(div2);
+            
+            let div3 = document.createElement("div");
+            div3.className = "column Date"
+            div3.textContent = survey.Date;
+            li.appendChild(div3);
+            let div4 = document.createElement('div');
 
             let res_btn = document.createElement('button');
             res_btn.className = 'results';
@@ -57,17 +75,20 @@ export function display_surveys(page = 1){
             ans_btn.id = sid;
 
 
-            li.appendChild(res_btn);
-            li.appendChild(clo_btn);
-            li.appendChild(ans_btn);
+            div4.appendChild(res_btn);
+            div4.appendChild(clo_btn);
+            div4.appendChild(ans_btn);
+            div4.className = "column survey_buttons";
+            li.appendChild(div4);
+            li.className = "flex-container";
 
             ul.appendChild(li);
             ul.addEventListener("click", router);
         }
     }
 
+    
     section.appendChild(ul);
-
     document.getElementById("section--1").innerHTML = '<div></div>';
     document.getElementById("section--1").appendChild(section);
 

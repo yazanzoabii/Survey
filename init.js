@@ -1,43 +1,93 @@
 import {savequestion, savesurvey, saveanswers} from './src/storage/storage.js';
 
 
-export const mockData = [
+export const mockSurvey1 = [
     {
-      type: 1,
-      question: "what is the weather?",
-      options: []
+        type: 1,
+        question: "what is the weather?",
+        options: []
     },
     {
-      type: 1,
-      question: "what is the day?",
-      options: []
+        type: 1,
+        question: "what is the day?",
+        options: []
     },
     {
-      type: 1,
-      question: "what is the year?",
-      options: []
+        type: 1,
+        question: "what is the year?",
+        options: []
     },
-  ]
+    {
+        type: 2,
+        question: "what is the capital city of Germany?",
+        options: ['berlin', 'dresden', 'basel', 'sulam']
+    },
+    {
+        type: 2,
+        question: "what is the capital city of France?",
+        options: ['berlin', 'Paris', 'basel', 'sulam']
+    },
+    {
+        type: 2,
+        question: "what is the capital city of Egypt?",
+        options: ['berlin', 'Cairo', 'basel', 'sulam']
+}   
+];
+
+export const mockSurvey2 = [
+{
+    type: 1,
+    question: "explain what is energy?",
+    options: []
+},
+{
+    type: 2,
+    question: "What is the boiling point of water?",
+    options: ['0', '10', '100', '-100']
+},
+];
+
+export const mockSurvey3 = [
+    {
+        type: 1,
+        question: "what do you think about cars?",
+        options: []
+    },
+    {
+        type: 3,
+        question: "which is your favorite brand?", 
+        options: ['BMW', 'Mercedes', 'Volvo', 'Tesla']
+    },
+    {
+        type: 2,
+        question: "chose one model", 
+        options: ['EV', 'Combustion engine', 'hybrid', 'Horse back riding']
+    },
+];
+  /*
+const function mockData(){
+
+}*/
+
+export function init_storage2(){
+    for (let question of mockSurvey1){
+        savequestion(question["type"], question["question"], question["options"]);
+    }
+    savesurvey('basic survey', 'Yazan');
+
+    for (let question of mockSurvey2){
+        savequestion(question["type"], question["question"], question["options"]);
+    }
+    savesurvey('Physics survey', 'Yazan');
+
+    for (let question of mockSurvey3){
+        savequestion(question["type"], question["question"], question["options"]);
+    }
+    savesurvey('Cars survey', 'Yazan');
+}
+
 
 export function init_storage(){
-    savequestion(1, "what is the weather?", []);
-    savequestion(1, "what is the day?", []);
-    savequestion(1, "what is the year?", []);
-    savequestion(2, "what is the capital city of germany?", ['berlin', 'dresden', 'basel', 'sulam']);
-    savequestion(2, "what is the capital city of France?", ['berlin', 'Paris', 'basel', 'sulam']);
-    savequestion(2, "what is the capital city of Egypt?", ['berlin', 'Cairo', 'basel', 'sulam']);
-    savesurvey('basic survey', 'Yazan');
-    
-    
-    savequestion(1, "explain what is energy?", []);
-    savequestion(2, "What is the boiling point of water?", ['0', '10', '100', '-100']);
-    savesurvey('physics survey', 'Yazan');
-    
-    
-    savequestion(1, "what do you think about cars?", []);
-    savequestion(3, "which is your favorite brand?", ['BMW', 'Mercedes', 'Volvo', 'Tesla']);
-    savequestion(2, "chose one model", ['EV', 'Combustion engine', 'hybrid', 'Horse back riding']);
-    savesurvey('Cars survey', 'Yazan');
     
     let third_id = JSON.parse(localStorage.getItem("survies"))[2];
     console.log(third_id);

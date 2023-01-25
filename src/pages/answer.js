@@ -1,94 +1,49 @@
 import {saveanswers} from '../storage/storage.js';
 import {ThankYou} from '../components/ThankYou.js';
 import { missingField } from '../components/missingField.js';
-
+import {AnswerTemplateOpen, AnswerTemplateClosed, AnswerTemplateMulti} from './answerModels.js'
 
 export function load_answer_survey(id){
     
     let section = document.createElement('section');
-
-    let survey = JSON.parse(localStorage.getItem(id));
-    
-    let num = survey.num_questions;
-    
     let questions = JSON.parse(localStorage.getItem("questions_" + id));
+    let survey = JSON.parse(localStorage.getItem(id));
+
+    section = displayTitles(section, survey);
+    let i = 1;
+    for (let question of questions.Questions){
+        let AnswerTemplate = null;
+        if (question.question_type == 1){
+            AnswerTemplate = new AnswerTemplateOpen(section, null, question);
+        }
+        if (question.question_type == 2){
+            AnswerTemplate = new AnswerTemplateClosed(section, null, question);
+        }
+        if (question.question_type == 3){
+            AnswerTemplate = new AnswerTemplateMulti(section, null, question);
+        }
+        AnswerTemplate.render();
+        i += 1;
+    }
+
+    section = addSubmitButton(section, survey, id);
+
+    document.getElementById("section--1").innerHTML = '<div></div>';
+    document.getElementById("section--1").appendChild(section);
+}
+
+
+const displayTitles = function(section, survey){
     let h1 = document.createElement('h1');
     let h3 = document.createElement('h3');
     h1.textContent = survey.name;
     h3.textContent = "by: " + survey.Author;
     section.appendChild(h1);
     section.appendChild(h3);
-    console.log(questions); 
+    return section;
+}
 
-    for (let question of questions.Questions){
-        let fieldset = document.createElement('fieldset');
-        fieldset.className = "radio_options";
-        let h2 = document.createElement('h2');
-        h2.textContent = question.question;
-        fieldset.appendChild(h2);
-
-        //open Question
-        if (question.question_type == 1){
-            let element = document.createElement("TEXTAREA");
-            element.id = question.Qid;
-            element.className = "queston_textbox";
-            fieldset.appendChild(element);
-        }
-        
-        //closed question
-        if (question.question_type == 2){
-
-            let i = 1;
-            for (let option of question.options){
-                
-                let div = document.createElement('div');
-                let op = document.createElement('input');
-                let lb = document.createElement('label');
-
-                op.type = "radio";
-                op.id = question.Qid;
-                op.opt = i;
-                i += 1;
-                op.name = question.question;
-                op.value = option;
-                lb.for = option;
-                lb.textContent = option;    
-
-                div.appendChild(op);
-                div.appendChild(lb);
-                fieldset.appendChild(div);
-            }
-        }
-
-        if (question.question_type == 3){
-
-            let i = 1;
-            for (let option of question.options){
-                
-                let div = document.createElement('div');
-                let op = document.createElement('input');
-                let lb = document.createElement('label');
-
-                op.type = "checkbox";
-                op.id = question.Qid;
-                op.opt = i;
-                i += 1;
-                op.name = question.question;
-                op.value = option;
-                lb.for = option;
-                lb.textContent = option;    
-
-                div.appendChild(op);
-                div.appendChild(lb);
-                fieldset.appendChild(div);
-            }
-        }
-
-
-
-        section.appendChild(fieldset);
-    }
-
+const addSubmitButton = function(section, survey, id){
     let ans_btn = document.createElement('button');
     ans_btn.className = 'btn btn_submit_answer';
     ans_btn.textContent = 'Submit!';
@@ -99,17 +54,13 @@ export function load_answer_survey(id){
     });
 
     section.appendChild(ans_btn);
-
-    document.getElementById("section--1").innerHTML = '<div></div>';
-    document.getElementById("section--1").appendChild(section);
+    return section;
 }
-
 
 
 
 export function submit_answer(id) {
 
-    let survey = JSON.parse(localStorage.getItem(id));
     let questions = JSON.parse(localStorage.getItem("questions_" + id));
     let answers = [];
     for( let question of questions.Questions){

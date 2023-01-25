@@ -30,9 +30,9 @@ const storeSurvey = function(title, author) {
     //Names
     survey.name = title;
     survey.Author = author;
+    survey.Date = Date().slice(0, 16);
 
     let id = getNewId();
-    let Survey_answers_id = "answers_" + id;
 
     //create an instance for the answers data
     let Survey_answers = new SurveyData();
@@ -48,11 +48,10 @@ const storeSurvey = function(title, author) {
         Survey_answers.QuestionsData.push(question_data_id);
     }
 
-    localStorage.setItem(Survey_answers_id, JSON.stringify(Survey_answers));
+    localStorage.setItem("answers_" + id, JSON.stringify(Survey_answers));
     
     let survies = JSON.parse(localStorage.getItem("survies"));
     survies.push(id);
-    console.log(survies);
     localStorage.setItem("questions_" + id, JSON.stringify(questions))
     localStorage.setItem("survies", JSON.stringify(survies));
     localStorage.setItem(id, JSON.stringify(survey));
@@ -69,6 +68,7 @@ const storeSurvey = function(title, author) {
 //add a button here for deleting the the question
 //display the added question to the screen
 const display_question = function(text){
+    console.log("displaying new question")
     let list_value = '<li class="added_questions_list"><h2> open question:  ' + text.slice(0, 20) + '...</h2></li>';
     const questionsList = document.getElementById('add_question_here');
     const listElement = document.getElementById('hidden');
@@ -152,15 +152,11 @@ export function delete_survey(id){
 
     let survies = JSON.parse(localStorage.getItem("survies"));    
     let index = survies.indexOf(Number(id));
-    console.log(index, id, survies); 
     if (index !== -1) {
         survies.splice(index, 1);//delete id from surveys array
     }
-    console.log(survies);
     localStorage.setItem("survies", JSON.stringify(survies));
-    
     let survey = JSON.parse(localStorage.getItem(id));
-
     if (survey == null){//if survey already deleted return
         return;
     }
@@ -171,13 +167,12 @@ export function delete_survey(id){
     }
     localStorage.removeItem(survey.answers);
 
-    let questions = survey.questions;
-    for ( let question_id of questions){
+    let questions = JSON.parse(localStorage.getItem("questions_" + id));
+    for ( let question_id of questions.Questions){
         localStorage.removeItem(question_id);
     }
 
     localStorage.removeItem(id);//remove survey
-
     document.getElementById(id).remove();//remove form screen
 
 }

@@ -6,8 +6,7 @@ import {delete_survey} from './src/storage/storage.js';
 import {load_answer_survey} from './src/pages/answer.js';
 import {home_screen} from './src/pages/home_screen.js';
 import {survey_result} from './src/pages/results.js';
-import {init_storage} from './init.js';
-init_storage();
+
 
 const urlRoutes = {
   404: {
