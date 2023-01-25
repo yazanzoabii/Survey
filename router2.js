@@ -79,14 +79,22 @@ const urlRoutes = {
     dynamic: "True"
   },
 
+  "sortBy": {
+    title: "pagination",
+    url: "/surveys/",
+    description: "",
+    function: display_surveys,
+    dynamic: "True"
+  },
+
 };
 
-let page = 1;
 
 export function router(event){
 
   let cls_name = "/";
   let id = "0";
+  let page = 1;
   if (event != undefined){
     cls_name = event.target.className;
     id = event.target.id;
@@ -97,15 +105,18 @@ export function router(event){
     cls_name = id;
   }
   if (cls_name == "pagination-button"){
-    if(id == "next-button"){
-      page += 1;
-      id = page;
-    }
-    else{
-      page -= 1;
-      id = page
-    }
+      page = event.target.getAttribute("page");
+      id = event.target.getAttribute("sortBy");
+      console.log(id);
+      cls_name = "sortBy";
   }
+  if(id == "sortbyAuthor" || id == "sortbyname" || id == "sortbyDate"){
+    page = event.target.getAttribute("page");
+    cls_name = "sortBy";
+  }
+  
+  console.log(id);
+  console.log(page);
   console.log(cls_name);
 
   const route = urlRoutes[cls_name] || urlRoutes['/'];
@@ -114,6 +125,11 @@ export function router(event){
   
   if (route.function != null){
     if (route.dynamic == "True"){
+      if(cls_name == "sortBy"){
+        window.history.pushState({}, "", route.url + page + "/" + id);
+        route.function(page, id);
+        return;
+      }
       window.history.pushState({}, "", route.url + id);
       route.function(id);
     }

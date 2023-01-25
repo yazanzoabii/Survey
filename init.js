@@ -64,12 +64,58 @@ export const mockSurvey3 = [
         options: ['EV', 'Combustion engine', 'hybrid', 'Horse back riding']
     },
 ];
-  /*
-const function mockData(){
 
-}*/
 
-export function init_storage2(){
+export const mockAnswers = [
+
+    {
+        id: 22,
+        answers:['whatever', [1, 2], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [1, 2], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [1, 2], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [1, 4], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [1, 4], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [2, 4], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [2, 4], 1]
+    },
+    {
+        id: 22,
+        answers:['whatever', [2, 4], 1]
+    },
+    {
+        id: 22,
+        answers:['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, autem tenetur veritatis soluta laboriosam quisquam?', [2, 4], 4]
+    },
+    {
+        id: 22,
+        answers:['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima voluptatem delectus eos eligendi fugiat modi doloremque consequatur possimus quam quaerat!', [1, 4], 4]
+    },
+    {
+        id: 22,
+        answers:['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, autem tenetur veritatis soluta laboriosam quisquam?', [3], 3]
+    },
+    ];
+
+
+export function init_storage_surveys(){
     for (let question of mockSurvey1){
         savequestion(question["type"], question["question"], question["options"]);
     }
@@ -87,32 +133,16 @@ export function init_storage2(){
 }
 
 
-export function init_storage(){
-    
-    let third_id = JSON.parse(localStorage.getItem("survies"))[2];
-    console.log(third_id);
-    saveanswers(third_id, ['whatever', [1, 2], 1]);
-    saveanswers(third_id, ['whatever', [1, 2], 1]);
-    saveanswers(third_id, ['whatever', [1, 2], 1]);
-    saveanswers(third_id, ['whatever', [1, 2], 1]);
-    saveanswers(third_id, ['whatever', [1, 4], 2]);
-    saveanswers(third_id, ['whatever', [1, 4], 2]);
-    saveanswers(third_id, ['whatever', [1, 4], 2]);
-    saveanswers(third_id, ['whatever', [1, 4], 2]);
-    saveanswers(third_id, ['whatever', [2, 4], 2]);
-    saveanswers(third_id, ['whatever', [2, 4], 4]);
-    saveanswers(third_id, ['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, autem tenetur veritatis soluta laboriosam quisquam?', [2, 4], 4]);
-    saveanswers(third_id, ['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, autem tenetur veritatis soluta laboriosam quisquam?', [1], 4]);
-    saveanswers(third_id, ['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, autem tenetur veritatis soluta laboriosam quisquam?', [1], 4]);
-    saveanswers(third_id, ['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima voluptatem delectus eos eligendi fugiat modi doloremque consequatur possimus quam quaerat!', [1, 4], 4]);
-    saveanswers(third_id, ['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos officiis quas sequi exercitationem similique ut voluptas, laboriosam dignissimos obcaecati sed at fugiat illum soluta dolor repudiandae, maxime omnis distinctio veniam. Deserunt tenetur ratione laudantium dolor eligendi est totam explicabo nesciunt.', [3], 3]);
-    saveanswers(third_id, ['Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, autem tenetur veritatis soluta laboriosam quisquam?', [3], 3]);
-    
-    
-    //for(let i = 0; i < 30; i++){
-    //  savequestion(1, "mock question", []);
-    //  savesurvey('mock survey ' + i, 'Yazan ' + (30 - i));
-    //}
+export function init_storage_answers(){
+    for (let answer of mockAnswers){
+        console.log(answer);
+        saveanswers(answer['id'], answer['answers']);
+    }
+
+    for(let i = 0; i < 30; i++){
+      savequestion(1, "mock question", []);
+      savesurvey('mock survey ' + i, 'Yazan ' + (30 - i));
+    }
 }
 
 

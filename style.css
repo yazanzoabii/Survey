@@ -417,7 +417,7 @@ h4 {
 }
 
 .scroll {
-  height:100vh;
+  height: 84vh;
 }
 
 .padded_section {
@@ -559,7 +559,7 @@ h2 {
 .pagination-container {
   display: flex;
   align-items: center;
-  position: absolute;
+  position: relative;
   width: 100%;
   bottom: 0;
   justify-content: center;

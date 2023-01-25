@@ -2,7 +2,7 @@ import { displyQuestionResult } from "./../components/displayQuestionResult.js";
 
 
 export function survey_result(id){
-    console.log("this is the result");
+    console.log("this is the result", id);
 
     document.getElementById("section--1").innerHTML = '<div></div>';
 
